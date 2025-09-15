@@ -66,7 +66,7 @@ class ShiftNeuron(nn.Module):
         if self.training == False:
             self.neuron.v = self.vt
 
-
+# MyFloor is QCFS
 class MyFloor(nn.Module):
     def __init__(self, up=2., t=32):
         super().__init__()
@@ -85,6 +85,7 @@ class MyFloor(nn.Module):
 class TCL(nn.Module):
     def __init__(self):
         super().__init__()
+        # Up is L?
         self.up = nn.Parameter(torch.Tensor([4.]), requires_grad=True)
 
     def forward(self, x):

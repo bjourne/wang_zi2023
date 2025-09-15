@@ -30,7 +30,9 @@ from tqdm import tqdm
 
 
 def parse_option():
-    parser = argparse.ArgumentParser('Masked Spiking Transformer training and evaluation script', add_help=False)
+    parser = argparse.ArgumentParser(
+        'Masked Spiking Transformer training and evaluation script', add_help=False
+    )
     parser.add_argument('--cfg', type=str, required=True, metavar="FILE", help='path to config file', )
     parser.add_argument(
         "--opts",
@@ -69,9 +71,13 @@ def parse_option():
     # parser.add_argument("--local_rank", type=int, default=0, help='local rank for DistributedDataParallel')
 
     # for acceleration
-    parser.add_argument('--fused_window_process', action='store_true',
-                        help='Fused window shift & window partition, similar for reversed part.')
-    parser.add_argument('--fused_layernorm', action='store_true', help='Use fused layernorm.')
+    parser.add_argument(
+        '--fused_window_process', action='store_true',
+        help='Fused window shift & window partition, similar for reversed part.'
+    )
+    parser.add_argument(
+        '--fused_layernorm', action='store_true', help='Use fused layernorm.'
+    )
     # overwrite optimizer in config (*.yaml) if specified, e.g., fused_adam/fused_lamb
     parser.add_argument('--optim', type=str,
                         help='overwrite optimizer if provided, can be adamw/sgd/fused_adam/fused_lamb.')

@@ -46,26 +46,6 @@ def replace_activation_by_floor(model, t, threshold):
                     model._modules[name] = MyFloor(threshold, t)
     return model
 
-
-def replace_sigmoid_by_floor(model, t):
-    for name, module in model._modules.items():
-        if hasattr(module, "_modules"):
-            model._modules[name] = replace_sigmoid_by_floor(module, t)
-        if issigmoid(module.__class__.__name__.lower()):
-            if hasattr(module, "up"):
-                print(module.up.item())
-                if t == 0:
-                    model._modules[name] = TCL()
-                else:
-                    model._modules[name] = MyFloor(module.up.item(), t)
-            else:
-                if t == 0:
-                    model._modules[name] = TCL()
-                else:
-                    model._modules[name] = MyFloor(8., t)
-    return model
-
-
 def replace_activation_by_neuron(model):
     for name, module in model._modules.items():
         if hasattr(module, "_modules"):

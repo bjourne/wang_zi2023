@@ -1,8 +1,3 @@
-# --------------------------------------------------------
-# Masked Spiking Transformer
-# Modified by Swin Transformer
-# --------------------------------------------------------
-
 import torch
 import torch.nn as nn
 import torch.utils.checkpoint as checkpoint
@@ -582,9 +577,11 @@ class MaskedSpikingTransformer(nn.Module):
 
 
 if __name__ == '__main__':
-    model = MaskedSpikingTransformer(img_size=224, patch_size=4, in_chans=3, num_classes=1000,
-                                     embed_dim=96, depths=[2, 2, 6, 2], num_heads=[3, 6, 12, 24],
-                                     window_size=7, mlp_ratio=4., ).cuda()
+    model = MaskedSpikingTransformer(
+        img_size=224, patch_size=4, in_chans=3, num_classes=1000,
+        embed_dim=96, depths=[2, 2, 6, 2], num_heads=[3, 6, 12, 24],
+        window_size=7, mlp_ratio=4.
+    ).cuda()
     n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"number of params: {n_parameters}")
     input = torch.randn(1, 3, 224, 224).cuda()
